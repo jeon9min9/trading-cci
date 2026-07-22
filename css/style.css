@@ -146,6 +146,17 @@ main.container {
 .dot.yellow { background: #fbbf24; }
 .dot.green { background: #34d399; }
 
+.brief-pos {
+  margin: 0.5rem 0 0;
+  padding: 0.45rem 0.6rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
 .brief-body {
   margin: 0.45rem 0 0;
   font-size: 0.88rem;

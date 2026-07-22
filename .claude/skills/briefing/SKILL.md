@@ -1,46 +1,64 @@
 ---
 name: briefing
-description: 관심 레버리지 ETF(SOXL, BITX, TQQQ, SPXL, QLD)의 최신 뉴스·전망을 조사해 웹앱의 브리핑 탭(data/briefing.json)을 갱신하고 push. "브리핑 업데이트", "브리핑 갱신", "오늘 브리핑" 요청 시 사용.
+description: 사용자가 현재 투자 중인 종목(data/positions.json)만 골라 최신 뉴스와 룰 기반 포지션 상태를 정리해 웹앱 브리핑 탭(data/briefing.json)을 갱신하고 push. "브리핑 업데이트", "브리핑 갱신", "오늘 브리핑", 투자 상황 공유 후 브리핑 요청 시 사용.
 ---
 
-# 브리핑 업데이트
+# 브리핑 업데이트 (보유 종목 기준)
 
-웹앱 브리핑 탭에 표시되는 `data/briefing.json`을 최신 내용으로 갱신하고 GitHub에 push한다.
-(push되면 GitHub Pages를 통해 사용자의 폰에서 바로 보임)
+`data/positions.json`(로컬 전용, gitignore됨)에 저장된 보유 종목만 대상으로
+`data/briefing.json`을 갱신하고 GitHub에 push한다. push되면 GitHub Pages를 통해 폰에서 보임.
+
+## 포지션 파일 (data/positions.json — 절대 커밋하지 않는다)
+
+사용자가 대화로 투자 상황을 공유하면 이 파일을 갱신한다:
+
+```json
+{
+  "updatedAt": "YYYY-MM-DD",
+  "positions": [
+    { "symbol": "SOXL", "avg": 23.5, "qty": 40, "startPrice": 24.0, "note": "L3까지 체결" }
+  ]
+}
+```
+
+avg(평단)는 필수, qty/startPrice/note는 사용자가 준 만큼만. 파일이 없으면 사용자에게
+현재 투자 상황(종목, 평단, 필요 시 수량·시작가)을 물어본다.
 
 ## 절차
 
-1. WebSearch로 각 기초자산의 최신 뉴스·전망 조사 (오늘 날짜 기준 최근 것 위주):
-   - SOXL → 반도체 섹터 / SOX 지수 (예: "semiconductor stocks SOX outlook")
-   - TQQQ·QLD → 나스닥100 (하나의 항목으로 묶는다)
-   - SPXL → S&P500
-   - BITX → 비트코인
-2. `data/briefing.json`을 아래 스키마로 덮어쓴다. 모든 텍스트는 한국어.
+1. `data/positions.json` 읽기 → 보유 종목 목록 확정. **보유 종목만 브리핑한다.**
+2. WebSearch로 각 보유 종목의 기초자산 최신 뉴스·전망 + 현재가(전일 종가) 조사:
+   - SOXL → 반도체/SOX, TQQQ·QLD → 나스닥100, SPXL → S&P500, BITX → 비트코인
+3. 종목별 룰 기반 상태 판정 (사용자 전략):
+   - 현재가 vs 평단: 등락률 계산
+   - 다음 1% 매수 레벨: startPrice가 있으면 startPrice × (1 − n/100) 중 현재가 바로 아래 레벨
+   - 가격이 평단 위로 회복 → "회복 구간" 표시
+4. `data/briefing.json` 덮어쓰기 (모든 텍스트 한국어):
 
 ```json
 {
   "date": "YYYY-MM-DD",
-  "note": "미국장 마감 기준",
+  "note": "미국장 마감 기준 · 보유 종목",
   "items": [
     {
       "symbol": "SOXL",
       "mood": "red | yellow | green",
       "title": "반도체 3배",
-      "body": "2~4문장. 핵심 수치(지수 등락, 주요 이벤트)와 전망 관측을 담백하게. 레버리지 특성 리스크 언급."
+      "position": "평단 $23.50 대비 -3.2% · 다음 매수 레벨 $22.56 (-0.8% 남음)",
+      "body": "뉴스·전망 요약 2~4문장 + 이 포지션 관점에서 참고할 점."
     }
   ],
   "sources": [{ "title": "매체명", "url": "https://..." }]
 }
 ```
 
-   - mood 기준: red = 급락/높은 리스크 국면, yellow = 중립/혼조, green = 반등/양호
-   - items 순서는 SOXL, TQQQ · QLD, SPXL, BITX 고정
-3. 커밋 후 push:
-   - 커밋 메시지: `브리핑 업데이트 YYYY-MM-DD`
-   - `git add data/briefing.json && git commit && git push origin main`
+   - `position` 줄에는 수량·금액을 넣지 않는다 (공개 저장소 — 평단/레벨 가격까지만)
+5. 커밋 후 push: `git add data/briefing.json && git commit -m "브리핑 업데이트 YYYY-MM-DD" && git push origin main`
+   - **data/positions.json이 스테이징되지 않았는지 반드시 확인**
 
 ## 제약 (반드시 지킬 것)
 
-- 매수/매도 추천·권유 문구 금지. 공개 정보 요약과 관측 전달만 한다 ("~라는 관측이 나옴" 수준).
-- 전망은 반드시 출처와 함께. sources에 실제 사용한 기사 URL만 넣는다.
-- briefing.json 외 다른 파일은 수정하지 않는다.
+- 매수/매도 추천·권유 문구 금지. 룰 기반 판정("다음 매수 레벨 -0.8% 남음")과 공개 정보 요약만.
+- Claude는 공인 투자자문가가 아님 — body에서 전망은 출처와 함께 관측으로만 전달.
+- 보유 수량·투자 금액을 briefing.json에 쓰지 않는다.
+- briefing.json 외 다른 파일은 커밋하지 않는다.

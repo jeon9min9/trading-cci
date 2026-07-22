@@ -43,6 +43,7 @@
       title.appendChild(el("strong", null, item.symbol));
       if (item.title) title.appendChild(el("span", "brief-sub", item.title));
       card.appendChild(title);
+      if (item.position) card.appendChild(el("p", "brief-pos", item.position));
       card.appendChild(el("p", "brief-body", item.body));
       box.appendChild(card);
     });

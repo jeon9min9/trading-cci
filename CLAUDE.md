@@ -26,8 +26,10 @@ CCI가 -50 ~ -100 구간에 들어왔을 때 분할매수를 시작하는 전략
 
 ## 브리핑 흐름
 
-웹앱은 API를 호출하지 않는다. Claude Code가 뉴스를 조사해 `data/briefing.json`을 갱신하고
-push하면 GitHub Pages가 폰에 보여준다. 갱신 요청: "브리핑 업데이트해줘".
+웹앱은 API를 호출하지 않는다. 사용자가 투자 상황을 공유하면 `data/positions.json`(로컬 전용,
+gitignore — 절대 커밋 금지)에 저장하고, Claude Code가 **보유 종목만** 뉴스 조사 + 룰 기반
+포지션 상태 판정을 해서 `data/briefing.json`을 갱신·push하면 GitHub Pages가 폰에 보여준다.
+공개 저장소이므로 briefing.json에 보유 수량·금액은 쓰지 않는다. 갱신 요청: "브리핑 업데이트해줘".
 
 ## 원칙
 
