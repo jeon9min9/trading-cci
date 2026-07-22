@@ -27,16 +27,19 @@
     <section id="tab-calc">
       <div class="inputs">
         <label class="field">
-          <span>시작가 $</span>
-          <input id="startPrice" inputmode="decimal" placeholder="예: 23.65">
+          <span>가격 ① $</span>
+          <input id="price1" inputmode="decimal" placeholder="예: 7">
         </label>
         <label class="field">
-          <span>1회 매수 금액 $</span>
-          <input id="buyAmount" inputmode="decimal" placeholder="예: 100">
+          <span>가격 ② (1% 하락) $</span>
+          <input id="price2" inputmode="decimal" placeholder="예: 6">
         </label>
+      </div>
+      <div class="amount-line">1회 매수 금액 <strong id="buyAmountView">-</strong></div>
+      <div class="inputs single">
         <label class="field">
-          <span>하락 간격 %</span>
-          <input id="stepPct" inputmode="decimal" value="1">
+          <span>매수가 $</span>
+          <input id="buyPrice" inputmode="decimal" placeholder="예: 7">
         </label>
       </div>
 
@@ -56,7 +59,7 @@
         </table>
       </div>
 
-      <p class="hint">시작가에서 하락 간격 %씩 떨어질 때마다 1회 매수 금액만큼 분할매수하는 표입니다. CCI가 -50~-100 구간에 들어왔을 때 시작가를 넣어 사용하세요.</p>
+      <p class="hint">가격 ①과 ②의 차이가 1회 매수 금액이 됩니다. 매수가에서 1%씩 떨어질 때마다 그 금액만큼 분할매수하는 표입니다. CCI가 -50~-100 구간에 들어왔을 때 사용하세요.</p>
     </section>
 
     <section id="tab-brief" hidden>
