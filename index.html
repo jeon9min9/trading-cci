@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>분할매수 계산기</title>
+<title>trading CCI</title>
 <link rel="stylesheet" href="css/style.css">
 <script>
   (function () {
@@ -14,46 +14,58 @@
 </head>
 <body>
   <header class="site-header">
-    <span class="site-title">분할매수 계산기</span>
+    <span class="site-title">trading CCI</span>
     <button class="theme-toggle" aria-label="테마 전환"></button>
   </header>
 
+  <nav class="tabs">
+    <button class="tab active" data-tab="calc">계산기</button>
+    <button class="tab" data-tab="brief">브리핑</button>
+  </nav>
+
   <main class="container">
-    <div class="inputs">
-      <label class="field">
-        <span>시작가 $</span>
-        <input id="startPrice" inputmode="decimal" placeholder="예: 23.65">
-      </label>
-      <label class="field">
-        <span>1회 매수 금액 $</span>
-        <input id="buyAmount" inputmode="decimal" placeholder="예: 100">
-      </label>
-      <label class="field">
-        <span>하락 간격 %</span>
-        <input id="stepPct" inputmode="decimal" value="1">
-      </label>
-    </div>
+    <section id="tab-calc">
+      <div class="inputs">
+        <label class="field">
+          <span>시작가 $</span>
+          <input id="startPrice" inputmode="decimal" placeholder="예: 23.65">
+        </label>
+        <label class="field">
+          <span>1회 매수 금액 $</span>
+          <input id="buyAmount" inputmode="decimal" placeholder="예: 100">
+        </label>
+        <label class="field">
+          <span>하락 간격 %</span>
+          <input id="stepPct" inputmode="decimal" value="1">
+        </label>
+      </div>
 
-    <div class="table-wrap">
-      <table id="ladder">
-        <thead>
-          <tr>
-            <th>하락</th>
-            <th>매수가</th>
-            <th>금액</th>
-            <th>수량</th>
-            <th>누적수량</th>
-            <th>평단</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
+      <div class="table-wrap">
+        <table id="ladder">
+          <thead>
+            <tr>
+              <th>하락</th>
+              <th>매수가</th>
+              <th>금액</th>
+              <th>수량</th>
+              <th>누적수량</th>
+              <th>평단</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
 
-    <p class="hint">시작가에서 하락 간격 %씩 떨어질 때마다 1회 매수 금액만큼 분할매수하는 표입니다. CCI가 -50~-100 구간에 들어왔을 때 시작가를 넣어 사용하세요.</p>
+      <p class="hint">시작가에서 하락 간격 %씩 떨어질 때마다 1회 매수 금액만큼 분할매수하는 표입니다. CCI가 -50~-100 구간에 들어왔을 때 시작가를 넣어 사용하세요.</p>
+    </section>
+
+    <section id="tab-brief" hidden>
+      <div id="briefing"><p class="hint">브리핑을 불러오는 중...</p></div>
+    </section>
   </main>
 
   <script src="js/theme.js"></script>
   <script src="js/calc.js"></script>
+  <script src="js/briefing.js"></script>
 </body>
 </html>
