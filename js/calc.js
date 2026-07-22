@@ -28,26 +28,17 @@
     amountView.textContent = isNaN(amount) || amount === 0 ? "-" : "$" + fmt(amount, 2);
 
     if (isNaN(amount) || amount === 0 || !base) {
-      tbody.innerHTML = '<tr><td colspan="6" class="empty">가격 ①·②와 매수가를 입력하세요</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="3" class="empty">가격 ①·②와 매수가를 입력하세요</td></tr>';
       return;
     }
 
     var rows = "";
-    var cumQty = 0;
-    var cumCost = 0;
     for (var i = 0; i < LEVELS; i++) {
       var price = base * (1 - i / 100);
-      var qty = amount / price;
-      cumQty += qty;
-      cumCost += qty * price;
-      var avg = cumCost / cumQty;
       rows += "<tr>" +
         "<td>" + (i === 0 ? "시작" : "-" + i + "%") + "</td>" +
         '<td class="num">$' + fmt(price, 2) + "</td>" +
         '<td class="num">$' + fmt(amount, 2) + "</td>" +
-        '<td class="num">' + fmt(qty, 2) + "</td>" +
-        '<td class="num">' + fmt(cumQty, 2) + "</td>" +
-        '<td class="num">$' + fmt(avg, 2) + "</td>" +
         "</tr>";
     }
     tbody.innerHTML = rows;
