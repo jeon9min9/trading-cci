@@ -79,6 +79,12 @@
       });
   }
 
+  // 스크린샷 업로드 = GitHub 이슈 첨부 (정적 사이트라 직접 업로드 불가)
+  document.getElementById("upload-link").href =
+    "https://github.com/jeon9min9/trading-cci/issues/new" +
+    "?title=" + encodeURIComponent("포지션 업데이트") +
+    "&body=" + encodeURIComponent("아래에 계좌·차트 스크린샷을 첨부해주세요.\n(계좌번호·총자산 등 민감한 부분은 잘라서 올리기)\n\n");
+
   var savedTab = localStorage.getItem("cci_tab");
   if (savedTab === "brief") switchTab("brief");
 })();
