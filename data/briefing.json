@@ -1,36 +1,18 @@
 {
   "date": "2026-07-23",
-  "note": "미국장 마감 기준",
+  "note": "미국장 마감 기준 · 보유 종목",
   "items": [
     {
-      "symbol": "SOXL",
-      "mood": "red",
-      "title": "반도체 3배",
-      "body": "이번 달 반도체 급락(반도체 ETF 월 -17%, 6/22 이후 시가총액 3.3조 달러 증발) 후 지난주 대만·한국 수출 호조로 반등 중. SOX 지수가 기술적 과매도 구간이라 평균회귀(반등) 관측이 나옴. 단 AI 밸류에이션 부담(AMD PER 162배)은 여전한 리스크. 3배 레버리지 특성상 변동성 극심 — CCI 저점 진입 전략에는 주시할 국면."
-    },
-    {
-      "symbol": "TQQQ · QLD",
-      "mood": "yellow",
-      "title": "나스닥100 3배/2배",
-      "body": "나스닥100 화요일 +1.9% 반등. 이란-미국 긴장(유가 상승)이 변수였으나 외교 협상 기대로 진정. 나스닥100도 기술적 과매도 언급이 나오는 상태로, 반등 시도와 지정학 리스크가 공존."
-    },
-    {
-      "symbol": "SPXL",
-      "mood": "yellow",
-      "title": "S&P500 3배",
-      "body": "S&P500 7,505(7/21 기준). 시장 폭(breadth)은 2024년 12월 이후 최고 수준으로 양호. 연말 8,250(약 +10%) 전망도 나오지만 유가·지정학 변수 상존."
-    },
-    {
       "symbol": "BITX",
-      "mood": "yellow",
+      "mood": "green",
       "title": "비트코인 2배",
-      "body": "BTC 약 $64,000, 좁은 박스권. 일봉 MACD·RSI는 약한 상승이나 EMA200($74,405) 아래라 큰 추세는 약세. 공포·탐욕 지수 29(공포). Citi는 12개월 전망을 $82,000으로 하향(ETF 수요 둔화). 방향성이 애매한 구간."
+      "position": "평단 $15.25 대비 -14.9% · 회복까지 +17.5% 필요 · CCI(20) +101 (진입 구간 아님)",
+      "body": "BTC가 $66,000대로 회복하며 한 달여 만의 최고치. 미국 현물 ETF에 6거래일 연속 순유입(누적 $7.2억+)이 이어지며 기관 수요가 되살아났다는 관측. 다만 $67,000~68,000 저항선과 지정학·고금리 부담이 상단을 제한한다는 시각도 있음. BITX 자체는 6/25 저점 $10.09에서 약 +28% 반등한 상태(7/22 종가 $12.99). 룰 기준으로는 CCI가 +101로 분할매수 진입 구간(-50~-100)과 반대인 상승 모멘텀 구간이며, 평단 회복에는 BITX 기준 +17.5% 상승이 필요."
     }
   ],
   "sources": [
-    { "title": "Motley Fool", "url": "https://www.fool.com/coverage/stock-market-today/2026/07/17/stock-market-today-july-17-stocks-slide-as-semiconductor-rout-deepens/" },
-    { "title": "CNBC", "url": "https://www.cnbc.com/2026/07/17/stock-market-next-week-outlook-for-july-20-24-2026.html" },
-    { "title": "TheStreet", "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-july-20-2026" },
-    { "title": "Yahoo Finance", "url": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-monday-july-20-2026-crypto-prices-mixed-as-second-half-2026-outlooks-conflict-151956982.html" }
+    { "title": "Yahoo Finance", "url": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-etf-news-inflows-hit-105959495.html" },
+    { "title": "FX Leaders", "url": "https://www.fxleaders.com/news/2026/07/21/new-btc-price-prediction-as-bitcoin-above-66k-on-etf-inflow-surge/" },
+    { "title": "99Bitcoins", "url": "https://99bitcoins.com/news/bitcoin-btc/bitcoin-etf-news-inflows-reverse-outflow-cycle/" }
   ]
 }
