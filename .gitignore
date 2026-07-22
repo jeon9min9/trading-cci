@@ -1,0 +1,3 @@
+data/positions.json
+*.env
+.DS_Store
