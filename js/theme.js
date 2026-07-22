@@ -14,7 +14,7 @@
   toggle.addEventListener("click", function () {
     var next = currentTheme() === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("sl_theme", next);
+    localStorage.setItem("cci_theme", next);
     updateIcon();
   });
 
