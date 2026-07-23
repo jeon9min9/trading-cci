@@ -1,38 +1,30 @@
-# trading CCI
+# 주식 계산기
 
 레버리지 ETF(SOXL, BITX, TQQQ, SPXL, QLD) 단타 분할매수용 계산기. 모바일 웹앱.
 
 ## 목적
 
 CCI가 -50 ~ -100 구간에 들어왔을 때 분할매수를 시작하는 전략을 보조한다.
-시작가에서 1%씩 떨어질 때마다 정해진 금액씩 분할매수하는 표를 계산해서 보여준다.
+매수가에서 1%씩 떨어질 때마다 매수가×1%만큼 분할매수하는 표를 계산해서 보여준다.
+1회 매수 금액은 매수가 × 1%로 자동 계산 (매수가만 입력하면 됨).
 
 ## 기술 스택
 
 - 순수 HTML, CSS, JavaScript (프레임워크/빌드 도구 없음)
 - 입력값은 localStorage에 저장 (재방문 시 복원)
+- PWA (manifest + 아이콘): 폰 홈 화면에 앱으로 설치 가능
 - 호스팅: GitHub Pages (정적)
 - 로컬 개발: `npx serve` 등 정적 서버
 
 ## 파일 구조
 
-- `index.html` — 탭 2개: 계산기(입력 3개 + 표) / 브리핑
+- `index.html` — 계산기 (매수가 입력 1개 + 표)
 - `css/style.css` — 다크 기본 테마, 모바일 우선
 - `js/calc.js` — 분할매수 표 계산/렌더
-- `js/briefing.js` — 탭 전환 + `data/briefing.json` 렌더
 - `js/theme.js` — 다크/라이트 토글
-- `data/briefing.json` — 브리핑 내용. Claude가 briefing 스킬로 생성·갱신 후 push
-- `.claude/skills/briefing/` — 브리핑 갱신 스킬
-
-## 브리핑 흐름
-
-웹앱은 API를 호출하지 않는다. 사용자가 투자 상황을 공유하면 `data/positions.json`(로컬 전용,
-gitignore — 절대 커밋 금지)에 저장하고, Claude Code가 **보유 종목만** 뉴스 조사 + 룰 기반
-포지션 상태 판정을 해서 `data/briefing.json`을 갱신·push하면 GitHub Pages가 폰에 보여준다.
-공개 저장소이므로 briefing.json에 보유 수량·금액은 쓰지 않는다. 갱신 요청: "브리핑 업데이트해줘".
+- `manifest.webmanifest`, `icons/` — PWA 설치용
 
 ## 원칙
 
-- 단순하게 유지. 요청받지 않은 옵션(API 연동, CCI 자동표시, 목표수익률 등)을 추가하지 않는다.
-- 투자 상태 조언은 웹앱이 아니라 Claude Code 대화로 처리한다.
-- 매수/매도 추천 금지 — 계산 결과와 공개 정보 요약만 제공한다.
+- 단순한 계산기 하나로 유지. 요청받지 않은 기능을 추가하지 않는다.
+- 매수/매도 추천 금지 — 계산 결과만 제공한다.

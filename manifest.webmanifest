@@ -1,7 +1,7 @@
 {
-  "name": "trading CCI",
-  "short_name": "CCI",
-  "description": "레버리지 ETF 분할매수 계산기 + 브리핑",
+  "name": "주식 계산기",
+  "short_name": "주식 계산기",
+  "description": "레버리지 ETF 분할매수 계산기",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0d0e11",

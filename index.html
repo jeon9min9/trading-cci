@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>trading CCI</title>
+<title>주식 계산기</title>
 <meta name="theme-color" content="#0d0e11">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="주식 계산기">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="css/style.css">
 <script>
@@ -19,63 +20,36 @@
 </head>
 <body>
   <header class="site-header">
-    <span class="site-title">trading CCI</span>
+    <span class="site-title">주식 계산기</span>
     <button class="theme-toggle" aria-label="테마 전환"></button>
   </header>
 
-  <nav class="tabs">
-    <button class="tab active" data-tab="calc">계산기</button>
-    <button class="tab" data-tab="brief">브리핑</button>
-  </nav>
-
   <main class="container">
-    <section id="tab-calc">
-      <div class="inputs">
-        <label class="field">
-          <span>가격 ① $</span>
-          <input id="price1" inputmode="decimal" placeholder="예: 7">
-        </label>
-        <label class="field">
-          <span>가격 ② (1% 하락) $</span>
-          <input id="price2" inputmode="decimal" placeholder="예: 6">
-        </label>
-      </div>
-      <div class="amount-line">1회 매수 금액 <strong id="buyAmountView">-</strong></div>
-      <div class="inputs single">
-        <label class="field">
-          <span>매수가 $</span>
-          <input id="buyPrice" inputmode="decimal" placeholder="예: 7">
-        </label>
-      </div>
+    <div class="inputs single">
+      <label class="field">
+        <span>매수가 $</span>
+        <input id="buyPrice" inputmode="decimal" placeholder="예: 152.97">
+      </label>
+    </div>
+    <div class="amount-line">1회 매수 금액 (매수가 × 1%) <strong id="buyAmountView">-</strong></div>
 
-      <div class="table-wrap">
-        <table id="ladder">
-          <thead>
-            <tr>
-              <th>하락</th>
-              <th>매수가</th>
-              <th>금액</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+    <div class="table-wrap">
+      <table id="ladder">
+        <thead>
+          <tr>
+            <th>하락</th>
+            <th>매수가</th>
+            <th>금액</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
 
-      <p class="hint">가격 ①과 ②의 차이가 1회 매수 금액이 됩니다. 매수가에서 1%씩 떨어질 때마다 그 금액만큼 분할매수하는 표입니다. CCI가 -50~-100 구간에 들어왔을 때 사용하세요.</p>
-    </section>
-
-    <section id="tab-brief" hidden>
-      <div id="briefing"><p class="hint">브리핑을 불러오는 중...</p></div>
-      <div class="upload-box">
-        <p class="upload-title">📷 투자 상황 공유</p>
-        <p class="hint">계좌·차트 스크린샷을 올리면 다음 브리핑에 반영됩니다. 공개 저장소이므로 계좌번호·총자산 부분은 잘라서 올려주세요.</p>
-        <a class="btn-link" id="upload-link" href="#" target="_blank" rel="noopener">스크린샷 올리기</a>
-      </div>
-    </section>
+    <p class="hint">1회 매수 금액은 매수가의 1%로 자동 계산됩니다. 매수가에서 1%씩 떨어질 때마다 그 금액만큼 분할매수하는 표입니다. CCI가 -50~-100 구간에 들어왔을 때 사용하세요.</p>
   </main>
 
   <script src="js/theme.js"></script>
   <script src="js/calc.js"></script>
-  <script src="js/briefing.js"></script>
 </body>
 </html>
